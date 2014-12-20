@@ -1,0 +1,526 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+* {
+  font-family: 'Roboto', sans-serif;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+----------------------Layer_Selector-----------------
+ #layer_selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 0;
+      }
+
+      #layer_selector ul {
+        padding: 0; margin: 0;
+        list-style-type: none;
+      }
+
+      #layer_selector li {
+        border-bottom: 1px solid #999;
+        padding: 15px 30px;
+        font-family: "Helvetica", Arial;
+        font-size: 13px;
+        color: #444;
+        cursor: auto;
+      }
+
+      #layer_selector li:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+      }
+
+      #layer_selector li.selected {
+        background-color: #EEE;
+      }
+---------------------------------------------
+/* GENERIC
+* ------------------------------------------------------ */
+h1 {
+  font-size: 1.1em;
+  font-weight: 800;
+}
+h4 {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+p {
+  font-size: 0.7em;
+  font-weight: 100;
+}
+.leaflet-layer {
+  opacity: 1.0;
+}
+a,
+a:hover,
+a:link,
+a:visited {
+  font-weight: 800;
+  color: #009BE0;
+}
+.languagechooser img {
+  width: 40px;
+  padding: 10px 10px 10px 0;
+}
+.textcenter {
+  text-align: center;
+}
+.disclaimer {
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 400;
+}
+/* LESS FUNCTIONS
+ * ------------------------------------------------------ */
+.shadow-yes {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px !important;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px !important;
+}
+.shadow-no {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.blur {
+  -webkit-filter: blur(5px);
+}
+.pointer {
+  cursor: pointer;
+}
+/* CARTODDB OVERRIDE
+ * ------------------------------------------------------ */
+.cartodb-legend.wrapper {
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: none !important;
+}
+.warning {
+  color: #000000;
+}
+/* BELANGRIJK CLASS TOONT NORMAAL HOVER VALUES
+* IN EEN SCHERM EN DEZE WAARDEN GEBRUIKEN
+* WE IN DE CONTROLLER
+*/
+.cartodb-tooltip {
+  display: none !important;
+}
+.cartodb-searchbox {
+  position: absolute !important;
+  top: 40px !important;
+  right: 0 !important;
+  z-index: 1 !important;
+  width: 198px !important;
+  height: 30px !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #aaa !important;
+}
+#map .cartodb-searchbox input[type=text] {
+  width: 160px;
+}
+.cartodb-zoom {
+  position: absolute !important;
+  top: 80px !important;
+  right: 20px !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #aaa !important;
+}
+.cartodb-header {
+  background-color: #FFFFFF;
+  opacity: 0.8;
+}
+.cartodb-header .content .title {
+  color: #000000 !important;
+  text-align: center;
+}
+/* DESKTOP DEVICES
+ * ------------------------------------------------------ */
+@media (min-width: 640px) {
+  .infodiv {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    height: 440px;
+    width: 200px;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .close {
+    text-align: right;
+    width: 40%;
+    float: right;
+  }
+  .closelid {
+    display: none;
+  }
+  /* INFOSCHERM
+ * ------------------------------------------------------ */
+  .infoscherm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    overflow: auto;
+  }
+  .infoschermcontainer {
+    width: 100%;
+    padding-top: 80px;
+    text-align: center;
+    color: #fff;
+  }
+  .infoschermheader {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .infospacer {
+    width: 18%;
+    height: 1px;
+    float: left;
+  }
+  .infoschermtekst {
+    width: 64%%;
+    text-align: center;
+    float: left;
+    overflow: auto;
+  }
+  .infoschermtekstblok {
+    font-size: 12px;
+  }
+  .infoschermsluitcontainer {
+    padding-bottom: 30px;
+  }
+  .info {
+    width: 20%;
+    float: left;
+    z-index: 1000;
+  }
+  .iconinfo {
+    width: 20px;
+  }
+  .tekstclose {
+    line-height: 30px;
+    vertical-align: middle;
+  }
+  .iconclose {
+    width: 30px;
+    padding-top: 10px;
+    z-index: 9999;
+  }
+  .infodiv-clublogo {
+    text-align: center;
+  }
+  .infodiv-hr-top {
+    border-bottom: 1px solid #666;
+    margin-bottom: 5px;
+  }
+  .infodiv-hr-bottom {
+    border-top: 1px solid #666;
+    margin-top: 5px;
+  }
+  .infodiv-select {
+    padding-bottom: 10px;
+    width: 100%;
+  }
+  .plaats {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .wijk {
+    color: #666;
+    font-size: 12px;
+    font-weight: 100;
+    text-transform: lowercase;
+  }
+  .postcode {
+    margin-top: 5px;
+    position: absolute;
+    left: 10px;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .postcode-nr {
+    margin-top: 5px;
+    position: absolute;
+    left: 60px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .inwoners {
+    margin-top: 5px;
+    position: absolute;
+    left: 85px;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .inwoners-nr {
+    margin-top: 5px;
+    position: absolute;
+    left: 140px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .clublogoklein {
+    position: absolute;
+    left: 10px;
+    height: 15px;
+  }
+  .clubnaam {
+    position: absolute;
+    left: 30px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .clubpercentage {
+    position: absolute;
+    left: 130px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .clubdata {
+    position: absolute;
+    left: 190px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .totaal {
+    position: absolute;
+    left: 10px;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .totaal-nr {
+    position: absolute;
+    left: 190px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+}
+/* MOBILE DEVICES
+ * ------------------------------------------------------ */
+@media (max-width: 640px) {
+  #page {
+    padding: 0;
+    margin: 0;
+  }
+  .cartodb-searchbox {
+    display: none !important;
+  }
+  .infodiv {
+    padding-top: 20px;
+    position: absolute;
+    margin: 0;
+    bottom: 0px;
+    height: 220px;
+    width: 100%%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  .close {
+    display: none;
+  }
+  .kaartverantwoording {
+    display: none;
+  }
+  /* INFOSCHERM
+ * ------------------------------------------------------ */
+  .info {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 20px;
+    z-index: auto;
+  }
+  .iconinfo {
+    width: 24px;
+  }
+  .infoscherm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    overflow: auto;
+  }
+  .infoschermcontainer {
+    width: 100%;
+    padding-top: 80px;
+    text-align: center;
+    color: #fff;
+  }
+  .infoschermheader {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .infospacer {
+    width: 10%;
+    height: 1px;
+    float: left;
+  }
+  .infoschermtekst {
+    width: 80%;
+    text-align: center;
+    float: left;
+    overflow: auto;
+  }
+  .infoschermtekstblok {
+    font-size: 12px;
+  }
+  .infoschermsluitcontainer {
+    padding-bottom: 30px;
+  }
+  .tekstclose {
+    line-height: 30px;
+    vertical-align: middle;
+  }
+  .iconclose {
+    width: 30px;
+    padding-top: 10px;
+    z-index: 9999;
+  }
+  .closelid {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: absolute;
+    bottom: 240px;
+    left: 50%;
+    margin-left: -70px;
+    background: red;
+    padding-top: 4px;
+    height: 24px;
+    width: 140px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    z-index: 1000;
+  }
+  .infodiv-clublogo {
+    display: none;
+  }
+  .infodiv-hr-top {
+    display: none;
+  }
+  .infodiv-hr-bottom {
+    display: none;
+  }
+  .infodiv-content {
+    padding: 10px;
+    text-align: center;
+  }
+  .infodiv-select {
+    text-align: center;
+    padding-bottom: 2px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 20px;
+  }
+  .infodiv-header {
+    padding-bottom: 2px;
+    text-align: center;
+  }
+  .plaats {
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .wijk {
+    color: #666;
+    font-size: 10px;
+    font-weight: 100;
+    text-transform: lowercase;
+  }
+  .postcode {
+    left: 10px;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .postcode-nr {
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .inwoners {
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .inwoners-nr {
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .datacontainer:nth-child(odd) {
+    float: left;
+    text-align: left;
+    width: 50%;
+    margin-bottom: 5px;
+  }
+  .datacontainer:nth-child(even) {
+    float: right;
+    text-align: right;
+    width: 50%;
+    clear: right;
+    margin-bottom: 5px;
+  }
+  .clublogoklein {
+    float: left;
+    height: 15px;
+    width: 15px;
+  }
+  .clubnaam {
+    text-align: left;
+    width: 75px;
+    float: left;
+    padding-left: 5px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .clubdatacombi {
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .totaal {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  .totaal-nr {
+    position: absolute;
+    bottom: 10px;
+    left: 120px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+}
+
+

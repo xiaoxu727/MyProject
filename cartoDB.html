@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Easy example | CartoDB.js</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
+     <link rel="stylesheet" href="resources/css/override.css">
+    <style>
+
+/*baground-div*/
+#background_div{
+  display: none;
+   position: absolute;
+   top: 0%;  left: 0%;
+    width: 100%;
+    height: 100%;
+     background-color: black;
+     z-index:1001;
+      -moz-opacity: 0.7;
+      opacity:.70;
+      filter: alpha(opacity=70);
+}
+
+/*start for layer_selector*/
+ #layer_selector {
+	position: absolute;
+	top: 50px;
+	left: 29px;
+	padding: 0;
+	width: 211px;
+      }
+      #layer_selector ul {
+        padding: 0; margin: 0;
+        list-style-type: none;
+      }
+
+      #layer_selector li {
+        border-bottom: 1px solid #999;
+        padding: 15px 30px;
+        font-family: "Helvetica", Arial;
+        font-size: 13px;
+        color: #444;
+        cursor: auto;
+      }
+
+      #layer_selector li:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+      }
+
+      #layer_selector li.selected {
+        background-color: #EEE;
+      }
+
+
+/*start for houseNewRecordDiv*/
+
+      #houseNewRecordDiv{
+        position: absolute;
+        bottom: 200px;
+        left: 400px;
+        padding: 0;
+        width: 350px;
+        height: 300px;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #999;
+        border:solid 1px;
+        z-index:1002;
+        display: none;
+      }
+
+     #houseNewRecordDiv ul {
+        padding: 0; margin: 0;
+        list-style-type: none;
+      }
+
+      #houseNewRecordDiv li {
+        border-bottom: 1px solid #999;
+        padding: 10px 30px;
+        font-family: "Helvetica", Arial;
+        font-size: 15px;
+        color: #444;
+        cursor: auto;
+      }
+
+      #houseNewRecordDiv  .button_li{
+        padding-left: 100px;
+      }
+
+      #houseNewRecordDiv .textBox {
+        height: 22px;
+
+      }
+      #houseNewRecordDiv .label{
+        text-align:right;
+
+      }
+
+   #houseNewRecordDiv .submitBtn {
+      width: 100px;
+      height: 35px;
+     background-color:  #FC9239;
+    }
+
+    #houseNewRecordDiv .submitBtn:hover{
+      background-color: #fb7403;
+    }
+  /*end houseNewRecordDiv*/
+ /*start for contextMenu*/
+      #contextMenu {
+        position: absolute;
+        bottom: 50px;
+        left: 50px;
+        padding: 0;
+        width: 150px;
+        height: 150px;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #999;
+        display: none;
+      }
+
+      #contextMenu ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      #contextMenu li {
+        border-bottom: 1px solid #999;
+        padding: 15px 30px;
+        font-family: "Helvetica", Arial;
+        font-size: 13px;
+        color: #444;
+        cursor: auto;
+      }
+
+      #contextMenu li:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+      }
+
+      #contextMenu li.selected {
+        background-color: #EEE;
+      }
+
+    </style>
+
+    <script src="resources/lib/jquery/jquery-2.1.1.min.js"></script>
+
+     <!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.11/cartodb.js"></script>
+    <script src="resources/js/mapController.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="layer_selector" class="cartodb-infobox">
+      <ul>
+        <li data="all" class="selected"  layerName ='scoreLayer'>score <a class="selected" onClick=""></a></li>
+        <li data="3000"  layerName ='pointLayer'>population <a onClick=""></a></li>
+        <li data="6000"></li>
+        <li data="10000"></li>
+        <li data="50000"></li>
+      </ul>
+  </div>
+  <div id="background_div"></div>
+
+  <div id="affordabilityLayer">
+        <form class="form mvn h7">
+          <div class="field mvn">
+            <ul class="fieldGroup">
+              <li class="mtn">
+                <span class="fieldItem">
+                  <label class="pls"><input class="mrs" type="radio" name="affordability" value="home_prices_listings" checked="">Listing Price</label>
+                </span>
+              </li>
+              <li>
+                <span class="fieldItem">
+                  <label class="pls"><input class="mrs" type="radio" name="affordability" value="home_prices_sales">Sale Price</label>
+                </span>
+              </li>
+              <li>
+                <span class="fieldItem">
+                  <label class="pls"><input class="mrs" type="radio" name="affordability" value="home_prices_sales_sqft">Sale Price/Sqft</label>
+                </span>
+              </li>
+              <li>
+                <span class="fieldItem">
+                  <label class="pls"><input class="mrs" type="radio" name="affordability" value="valuations">Valuation</label>
+                </span>
+              </li>
+              <li class="mbn">
+                <span class="fieldItem">
+                  <label class="pls"><input class="mrs" type="radio" name="affordability" value="rental_prices">Rental Price</label>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
+
+
+     <div id="houseNewRecordDiv" >
+        <ul>
+        <li  > <span class="label">地产名：</span><input  id='houseName'  class = 'textBox' type="text" ></li>
+        <li > <span  class="label">代理人：</span> <input id = 'agent' class = 'textBox'  type="text"></li>
+        <li > <span  class="label">地     址：</span> <input id = 'address' class = 'textBox'  type="text"></li>
+        <li > <span  class="label">电    话：</span> <input id = 'telphone' class = 'textBox'  type="text"></li>
+        <li class = 'button_li'> <input type="button"  class='submitBtn' value="submit" onclick = 'InsertRecord()'></li>
+      </ul>
+  </div>
+    <div id="contextMenu" >
+      <ul>
+        <li  onclick="ShowAddHouseRecodDIV()">添加房产信息</li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </body>
+</html>

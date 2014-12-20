@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<meta name="format-detection" content="telephone=yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="shortcut icon" href="resources/icons/favicon.ico"/>
+	<!-- CSS STYLE SHEETS -->
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="resources/css/override.css">
+	<!-- FRAMEWORKS -->
+	<script src="resources/lib/jquery/jquery-2.1.1.min.js"></script>
+	<!-- FRAMEWORKS CDN -->
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+	<!-- API LIBRARIES -->
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+	<!-- MAIN CONTROLLER & CLASSES -->
+	<script src="resources/js/controller.js"></script>
+	<title>Tubantia Data</title>
+</head>
+<body>
+
+<div id="page">
+<div class="infoscherm pointer">
+	<div class="infoschermcontainer">
+		<div class="infospacer" id="spacer-left"></div>
+		<div class="infoschermtekst">
+
+			<div class="languagechooser">
+				<img id="dutch-btn" src="resources/icons/icon-dutch.png" />
+				<img id="german-btn" src="resources/icons/icon-german.png" />
+				<img id="english-btn" src="resources/icons/icon-english.png" />
+			</div>
+
+		</div>
+
+		<div class="infospacer" id="spacer-right"></div>
+	</div>
+</div>
+<div id="map"></div>
+
+<div id="closelid" class="closelid"></div>
+<div class="infodiv">
+
+	<div class="infodiv-select">
+		<div id="info" class="info"><img class="iconinfo" src="resources/images/icon-info.png" /></div>
+		<div id="close" class="close"></div>
+
+		<select id="selectedclub" style="width:100%;">
+			<option value="all" selected="selected">All</option>
+			<option value="census">census</option>
+			<option value="ajx">Ajax</option>
+			<option value="aza">AZ Alkmaar</option>
+			<option value="exc">Excelsior</option>
+		</select>
+	</div>
+
+	<div class="infodiv-clublogo"></div>
+	<div class="infodiv-header"></div>
+	<div class="infodiv-hr-top"></div>
+	<div class="infodiv-content">
+
+		<a href="http://www.tubantia.nl" target="_blank"><img src="resources/images/tubantia-logo-200px.png" /></a>
+		<br>
+
+		<h1 style="text-align: center">Seizoenskaarten</h1>
+		<br>
+
+		<p style="text-align: center">
+
+		</p>
+
+	</div>
+	<div class="infodiv-hr-bottom"></div>
+	<div class="infodiv-footer"></div>
+
+</div>
+</div>
+<!-- Begin comScore Inline Tag 1.1111.15 -->
+<script>
+    // <![CDATA[
+
+	// additional VWO experiment code
+	var vwoCounter = '';
+	if (vwo_mvt_id && vwo_mvt_var) {
+		vwoCounter = '&ns_m_exp=' + vwo_mvt_id + '&ns_m_chs=' + vwo_mvt_var;
+	}
+
+    // additional usibo id code
+    var usobiMatches = new RegExp('(?:^|; )ssoUserId=([^;]*)').exec(document.cookie),
+        usobiId = usobiMatches ? usobiMatches[1] : null,
+        usobiCounter = usobiId ? '&wg_usobi_id=' + usobiId : '';
+    // comscore script
+    function udm_(a){var b="comScore=",c=document,d=c.cookie,e="",f="indexOf",g="substring",h="length",i=2048,j,k="&ns_",l="&",m,n,o,p,q=window,r=q.encodeURIComponent||escape;if(d[f](b)+1)for(o=0,n=d.split(";"),p=n[h];o<p;o++)m=n[o][f](b),m+1&&(e=l+unescape(n[o][g](m+b[h])));a+=k+"_t="+ +(new Date)+k+"c="+(c.characterSet||c.defaultCharset||"")+"&c8="+r(c.title)+e+"&c7="+r(c.URL)+"&c9="+r(c.referrer),a[h]>i&&a[f](l)>0&&(j=a[g](0,i-8).lastIndexOf(l),a=(a[g](0,j)+k+"cut="+r(a[g](j+1)))[g](0,i)),c.images?(m=new Image,q.ns_p||(ns_p=m),m.src=a):c.write("<","p","><",'img src="',a,'" height="1" width="1" alt="*"',"><","/p",">")}
+    udm_('http'+(document.location.href.charAt(4)=='s'?'s://sb':'://b')+'.scorecardresearch.com/p?c1=2&c6=webads,nieuwsactualiteiten,dagbladen&name=voetbalkaart&ns_type=hidden&ns_site=tc-tubantia' + usobiCounter + vwoCounter);
+    ns_pixelUrl=ns_p.src;
+    // ]]>
+</script>
+<noscript><p><img src="http://b.scorecardresearch.com/p?c1=2&amp;c6=webads,nieuwsactualiteiten,dagbladen&amp;name=voetbalkaart&amp;ns_type=hidden&amp;ns_site=tc-tubantia" height="1" width="1" alt="*"/></p></noscript>
+<!-- End comScore Inline Tag -->
+</body>
+</html>
